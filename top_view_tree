@@ -1,0 +1,52 @@
+/*
+Print the top view of the binary tree.
+ 
+     3   
+   /   \
+  5     2
+ / \   / \
+1   4 6   7
+ \       /
+  9     8
+
+O/p => 1 5 3 2 7
+
+
+struct node
+{
+    int data;
+    node* left;
+    node* right;
+};
+
+*/
+
+void print_left(node *root ){
+    if(root == NULL) return;
+    print_left(root->left);
+    printf("%d ",root->data);
+}
+
+void print_right(node *root ){
+    
+    static int i = 0;
+    if(root == NULL) return;
+    
+    //just to avoid first run for root
+    if(i==0) {   
+       i++;
+       print_right(root->right); 
+    }
+    
+    else {  
+    i++;
+    printf("%d ",root->data);
+    print_right(root->right);     
+    }  
+}
+
+void top_view(node * root)
+{
+ print_left(root);
+ print_right(root);
+}
